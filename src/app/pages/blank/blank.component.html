@@ -1,0 +1,59 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-11">
+        <h1>Postes</h1>
+      </div>
+      <button class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="container-fluid">
+
+    <div class="float-left">
+      <span>Filtre : </span>
+      <button class="btn btn-outline-info ml-3">All</button>
+      <button class="btn btn-outline-info ml-3">Libelle</button>
+      <button class="btn btn-outline-info ml-3">Pas de position</button>
+      <button class="btn btn-outline-info ml-3">Nombre de clients</button>
+    </div>
+    <div class="form-group form-inline float-right">
+      Recherche: <input class="form-control ml-2" type="text" name="searchTerm"/>
+    </div>
+
+    <table class="table table-hover table-bordered table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 6%">ID</th>
+          <th scope="col" style="width: 30%">Libelle</th>
+          <th scope="col">Position x</th>
+          <th scope="col">Position y</th>
+          <th scope="col" style="width: 15%">Nombre de clients</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of postes">
+          <th scope="row">{{p?.id_poste}}</th>
+          <td>{{p?.libelle}}</td>
+          <td>{{p?.x_gps}}</td>
+          <td>{{p?.y_gps}}</td>
+          <td>{{p?.nb_clients}}</td>
+          <td>
+            <button class="btn btn-outline-danger mr-2"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-outline-primary"><i class="fas fa-map-marker-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</section>
+<!-- /.content -->
