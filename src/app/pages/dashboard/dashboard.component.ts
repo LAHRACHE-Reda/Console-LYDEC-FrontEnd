@@ -30,16 +30,13 @@ L.Marker.prototype.options.icon = iconDefault;
 })
 
 
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements OnInit {
   public postes: Poste[];
 	public map;
 
   constructor(private posteService: PosteService) {
   }
 
-	ngAfterViewInit() : void {
-		this.createMap();
-	}
 
   createMap(){
 		const Casablanca = {
@@ -64,7 +61,7 @@ export class DashboardComponent implements AfterViewInit {
 	}
 
   public getPostes() : void{
-    this.posteService.getAllPostes().subscribe(
+    this.posteService.getAllPostesWithPos().subscribe(
       (response: Poste[])=>{
         this.postes=response;
         // ajouter les markers des postes a la map
@@ -77,7 +74,7 @@ export class DashboardComponent implements AfterViewInit {
 
 	addMarker(postes:Poste[]){
 
-    for(let p of postes.values()){
+    for(let p of postes){
 
       const Marker = L.marker({lat:p.y_gps ,lng:p.x_gps});
       Marker.bindPopup('<b>Poste :</b> '+p.libelle.toString()+'<br>'+'<b>Nombre de clients :</b> '
@@ -90,5 +87,9 @@ export class DashboardComponent implements AfterViewInit {
     }
 
 	}
+
+  ngOnInit(): void {
+    this.createMap();
+  }
 
 }
