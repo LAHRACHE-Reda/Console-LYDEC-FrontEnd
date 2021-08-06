@@ -5,7 +5,7 @@
       <div class="col-11">
         <h1>Postes</h1>
       </div>
-      <button class="btn btn-outline-success"  data-toggle="modal" data-target="#addPosteModal"><i class="fas fa-plus-circle"></i></button>
+      <button class="btn btn-outline-success"  (click)="open(addPosteModal)"><i class="fas fa-plus-circle"></i></button>
     </div>
   </div>
   <!-- /.container-fluid -->
@@ -46,8 +46,8 @@
           <td>{{p?.y_gps}}</td>
           <td>{{p?.nb_clients}}</td>
           <td>
-            <button class="btn btn-outline-danger mr-2"><i class="fas fa-trash-alt"></i></button>
-            <button *ngIf="p?.x_gps !== 0" class="btn btn-outline-primary"><i class="fas fa-map-marker-alt"></i></button>
+            <button (click)="changeValue(p);open(deleteModal)" class="btn btn-outline-danger mr-2"><i class="fas fa-trash-alt"></i></button>
+            <button [routerLink]="['/']" (click)="redirectToMarker(p);" *ngIf="p?.x_gps !== 0" class="btn btn-outline-primary"><i class="fas fa-map-marker-alt"></i></button>
           </td>
         </tr>
       </tbody>
@@ -96,32 +96,65 @@
 
   </div>
 
-  <!-- Add poste Modal -->
-  <div class="modal fade" id="addPosteModal" tabindex="-1" role="dialog" aria-labelledby="Ajouter Poste" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter un poste DP</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form>
-        <div class="modal-body">
-            <div class="form-group">
-              <label for="Libelle" class="col-form-label">Libelle :</label>
-              <input type="text" class="form-control" id="Libelle">
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-success">Ajouter</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-
 </section>
 <!-- /.content -->
+
+<!-- Add poste Modal -->
+<ng-template #addPosteModal let-modal>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Ajouter un poste DP</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form #addPoste="ngForm" (ngSubmit)="onSubmit(addPoste);">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="Libelle" class="col-form-label">Libelle :</label>
+          <input ngModel name="libelle" type="text" class="form-control" id="Libelle" required>
+          <label for="type_poste" class="col-form-label">Type de poste :</label>
+          <input ngModel name="type_poste" type="text" class="form-control" id="type_poste" required>
+          <label for="gsm" class="col-form-label">GSM du poste :</label>
+          <input ngModel name="gsm" type="text" class="form-control" id="gsm" required>
+          <label for="id_prao" class="col-form-label">Id prao :</label>
+          <input ngModel name="id_prao" type="text" class="form-control" id="id_prao" required>
+          <label for="nb_clients" class="col-form-label">Nombre de clients :</label>
+          <input ngModel name="nb_clients" type="number" class="form-control" id="nb_clients" required>
+          <label for="ref_dlg" class="col-form-label">Délegation :</label>
+          <input ngModel name="ref_dlg" type="number" class="form-control" id="ref_dlg" required>
+          <label for="fiabilise" class="col-form-label">Fiable :</label>
+          <select ngModel name="fiabilise" id="fiabilise" class="form-control" required>
+            <option selected value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Annuler</button>
+        <button [disabled]="addPoste.invalid" (click)="onSubmit(addPoste);" type="submit" class="btn btn-success">Ajouter</button>
+      </div>
+    </form>
+
+</ng-template>
+
+<!-- Supprimer -->
+<ng-template #deleteModal let-modal>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="deleteModalLabel">Voulez-vous supprimer le poste ?</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Attention le poste : <b>{{posteDeleted.libelle}}</b>  sera supprimer définitivement
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Non</button>
+      <button type="button" class="btn btn-danger" (click)="delete();">Oui</button>
+    </div>
+
+</ng-template>
+
+

@@ -5,7 +5,7 @@
         (click)="toggleDropdownMenu()"
     >
         <img
-            [src]="user.picture || 'assets/img/default-profile.png'"
+            [src]="'assets/img/default-profile.png'"
             class="user-image img-circle elevation-2"
             alt="User Image"
         />
@@ -17,7 +17,7 @@
         <!-- User image -->
         <li class="user-header bg-primary">
             <img
-                [src]="user.picture || 'assets/img/default-profile.png'"
+                [src]="'assets/img/default-profile.png'"
                 class="img-circle elevation-2"
                 alt="User Image"
             />
@@ -26,12 +26,12 @@
                 <span>Admin</span>
             </p>
         </li>
-    
+
         <li class="user-footer">
             <a [routerLink]="['/profile']" class="btn btn-default btn-flat">
                 Profile
             </a>
-            <a (click)="logout()" class="btn btn-default btn-flat float-right"
+            <a class="btn btn-default btn-flat float-right"
                 >Déconnexion</a
             >
         </li>

@@ -89,15 +89,25 @@
     </div>
     <!-- Main row -->
 
-
     <!-- Maps -->
     <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
+
+      <div class="form-group row ml-4">
+        <label class="col-2 col-form-label" for="deleg" class="col-form-label">Délegation :</label>
+        <div class="col-8">
+          <select id="deleg" (click)="getPostesByDeleg();" class="custom-select" [(ngModel)]="selectedDeleg">
+              <option *ngFor="let deleg of delegations" value={{deleg}} >{{deleg}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Small boxes (Stat box) -->
         <div class="row ml-2 mr-2 justify-content-sm-center">
             <div class="map-border">
                 <div id="map"></div>
             </div>
         </div>
+
     </div>
 
 

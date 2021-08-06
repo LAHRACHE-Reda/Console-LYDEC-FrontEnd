@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from '@services/app.service';
+import {SharedDataService} from "@services/shared-data.service";
 
 @Component({
     selector: 'app-menu-sidebar',
     templateUrl: './menu-sidebar.component.html',
     styleUrls: ['./menu-sidebar.component.scss']
 })
-export class MenuSidebarComponent implements OnInit {
-    public user;
+export class MenuSidebarComponent {
 
-    constructor(public appService: AppService) {}
 
-    ngOnInit() {
-        this.user = this.appService.user;
-    }
+    constructor(private sharedDataService:SharedDataService) {}
+
+
+  resetMarkerInfo() {
+    this.sharedDataService.setPosteShared(null);
+  }
 }

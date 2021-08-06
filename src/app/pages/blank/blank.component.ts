@@ -2,6 +2,11 @@ import {AfterViewInit, Component} from '@angular/core';
 import {PosteService} from "@services/poste.service";
 import {Poste} from "@/Model/Poste";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ToastrService} from 'ngx-toastr';
+import {SharedDataService} from "@services/shared-data.service";
+import {NgForm} from "@angular/forms";
+import {add} from "husky";
 
 
 @Component({
@@ -24,8 +29,14 @@ export class BlankComponent implements AfterViewInit{
   public pasDePosFilter : boolean;
   public searchFilter : boolean;
   public searchValue : string;
+  public posteDeleted : Poste;
+  public newPoste : Poste;
 
-  constructor(private posteService: PosteService) {
+  closeResult: string = '';
+
+
+  constructor(private posteService: PosteService, private modalService: NgbModal,
+              private toastr: ToastrService,private sharedDataService:SharedDataService) {
   }
 
   ngAfterViewInit(): void {
@@ -173,5 +184,81 @@ export class BlankComponent implements AfterViewInit{
     this.getData();
   }
 
+  //---------------------------------
+
+  changeValue(poste: Poste) {
+    this.posteDeleted=poste;
+  }
+
+  // OperationS
+  delete() {
+    this.posteService.deletePoste(this.posteDeleted.id_poste).subscribe(
+      (response)=>{
+        this.getPostes();
+        this.toastr.success('Le poste : '+this.posteDeleted.libelle+' a été bien supprimé');
+        this.modalService.dismissAll();
+      },
+      (error: HttpErrorResponse)=>{alert(error.message)}
+    );
+  }
+
+
+
+  // About Modals
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+
+  redirectToMarker(p: Poste) {
+    this.sharedDataService.setPosteShared(p);
+  }
+
+
+  onSubmit(addForm: NgForm) {
+
+    let newPoste = {
+      "libelle": addForm.value['libelle'],
+      "type_poste": addForm.value['type_poste'],
+      "loc_id": 0,
+      "code_point": 0,
+      "gsm": addForm.value['gsm'],
+      "id_sig": 0,
+      "id_prao": addForm.value['id_prao'],
+      "x": 0.0,
+      "y": 0.0,
+      "rendement": 0.0,
+      "conso_clients": 0,
+      "conso_poste": 0,
+      "date_rlv": 0,
+      "indice_rend": 0,
+      "ref_dlg": parseInt(addForm.value['ref_dlg']),
+      "fiabilise": "",
+      "nb_clients": parseInt(addForm.value['nb_clients']),
+      "y_gps": 0.0,
+      "x_gps": 0.0
+    };
+
+    this.posteService.addPoste(newPoste).subscribe(
+      (response)=>{
+        this.toastr.success('Le poste : '+addForm.value['libelle']+' a été bien ajouté');
+        this.modalService.dismissAll();
+      },
+      (error: HttpErrorResponse)=>{this.toastr.error("Le poste :"+addForm.value['libelle']+" est déjà existant");}
+    );
+  }
 
 }

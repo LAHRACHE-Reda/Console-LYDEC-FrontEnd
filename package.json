@@ -1,5 +1,5 @@
 {
-  "name": "adminlte",
+  "name": "Console_Lydec",
   "version": "0.1.0",
   "scripts": {
     "start": "ng serve",
@@ -22,7 +22,8 @@
     }
   },
   "dependencies": {
-    "@angular/animations": "12.0.2",
+    "@angular/animations": "^12.0.2",
+    "@angular/cdk": "^12.2.0",
     "@angular/common": "12.0.2",
     "@angular/compiler": "12.0.2",
     "@angular/core": "12.0.2",
@@ -34,16 +35,12 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@types/leaflet": "^1.7.4",
     "bootstrap": "^4.5.0",
-    "chart.js": "^3.4.1",
+    "chart.js": "^2.9.4",
     "core-js": "3.8.0",
-    "datatables.net": "^1.10.25",
-    "datatables.net-dt": "^1.1.0",
-    "gatekeeper-client-sdk": "0.2.1",
     "jquery": "^3.6.0",
     "leaflet": "^1.7.1",
     "luxon": "^1.27.0",
-    "ng2-charts": "^3.0.0-rc.4",
-    "ngx-toastr": "14.0.0",
+    "ngx-toastr": "^14.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^12.0.1",
     "rxjs": "6.6.7",

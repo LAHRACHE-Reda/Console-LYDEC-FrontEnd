@@ -14,8 +14,7 @@ import {DateTime} from 'luxon';
     templateUrl: './user-dropdown-menu.component.html',
     styleUrls: ['./user-dropdown-menu.component.scss']
 })
-export class UserDropdownMenuComponent implements OnInit {
-    public user;
+export class UserDropdownMenuComponent{
 
     @ViewChild('dropdownMenu', {static: false}) dropdownMenu;
     @HostListener('document:click', ['$event'])
@@ -31,9 +30,6 @@ export class UserDropdownMenuComponent implements OnInit {
         private appService: AppService
     ) {}
 
-    ngOnInit(): void {
-        this.user = this.appService.user;
-    }
 
     toggleDropdownMenu() {
         if (this.dropdownMenu.nativeElement.classList.contains('show')) {
@@ -49,10 +45,6 @@ export class UserDropdownMenuComponent implements OnInit {
 
     hideDropdownMenu() {
         this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
-    }
-
-    logout() {
-        this.appService.logout();
     }
 
     formatDate(date) {

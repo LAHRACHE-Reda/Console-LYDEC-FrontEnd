@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
+import {Poste} from "@/Model/Poste";
 
 
 @Injectable({
@@ -37,6 +38,22 @@ export class PosteService {
 
   public getAllPostesBySearch(page:number,libelle:string) : Observable<any>{
     return this.http.get<any>(`${this.apiServerUrl}/postes/search?libelle=${libelle}&page=${page}`);
+  }
+
+  public addPoste(poste):Observable<any>{
+    return this.http.post(`${this.apiServerUrl}/postes/add`,poste);
+  }
+
+  public deletePoste(id):Observable<any>{
+    return this.http.delete(`${this.apiServerUrl}/postes/delete?id=${id}`);
+  }
+
+  public getAllDeleg(): Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/postes/delegations`);
+  }
+
+  public getPostesByDeleg(deleg:number): Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/postes/posteByDelegation?deleg=${deleg}`);
   }
 
 }

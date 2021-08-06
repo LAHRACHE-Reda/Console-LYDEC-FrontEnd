@@ -15,8 +15,6 @@
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "paths": {
-            "@components/*": ["app/components/*"],
-            "@guards/*": ["app/guards/*"],
             "@modules/*": ["app/modules/*"],
             "@pages/*": ["app/pages/*"],
             "@services/*": ["app/services/*"],
