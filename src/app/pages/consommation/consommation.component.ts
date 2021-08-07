@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppConfig} from "@/Config/appconfig";
+
 
 
 @Component({
@@ -18,8 +18,6 @@ export class ConsommationComponent implements OnInit{
   lineStylesData: any;
 
   basicOptions: any;
-
-  config: AppConfig;
 
   constructor() {}
 

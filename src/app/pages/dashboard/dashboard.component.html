@@ -93,20 +93,25 @@
     <div class="container-fluid">
 
       <div class="form-group row ml-4">
-        <label class="col-2 col-form-label" for="deleg" class="col-form-label">Délegation :</label>
-        <div class="col-8">
+        <label class="col-md-2 col-form-label" for="deleg" class="col-form-label">Délegation :</label>
+        <div class="col-md-4 mr-5">
           <select id="deleg" (click)="getPostesByDeleg();" class="custom-select" [(ngModel)]="selectedDeleg">
               <option *ngFor="let deleg of delegations" value={{deleg}} >{{deleg}}</option>
           </select>
         </div>
+        <label class="col-md-2 col-form-label" for="rendement" class="col-form-label">Rendement :</label>
+        <div class="col-md-4 mt-3">
+          <p-slider (ngModelChange)="getPostesByDeleg();" id="rendement" [step]="10" [min]="0" [max]="100" [(ngModel)]="rangeValues" [range]="true"></p-slider>
+          <span class="d-flex justify-content-center">{{rangeValues[0] + ' - ' + rangeValues[1]}}</span>
+        </div>
       </div>
 
       <!-- Small boxes (Stat box) -->
-        <div class="row ml-2 mr-2 justify-content-sm-center">
-            <div class="map-border">
-                <div id="map"></div>
-            </div>
-        </div>
+      <div class="row ml-2 mr-2 justify-content-sm-center">
+          <div class="map-border">
+              <div id="map"></div>
+          </div>
+      </div>
 
     </div>
 

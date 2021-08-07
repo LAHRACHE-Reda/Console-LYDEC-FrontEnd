@@ -6,6 +6,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {ChartModule} from 'primeng/chart';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
+import {SliderModule} from 'primeng/slider';
 
 
 import {AppRoutingModule} from '@/app-routing.module';
@@ -51,6 +52,7 @@ registerLocaleData(localeEn, 'en-EN');
       ChartModule,
       DropdownModule,
       CardModule,
+      SliderModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,

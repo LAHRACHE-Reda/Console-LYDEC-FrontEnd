@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
   public delegations: number[];
   public selectedDeleg: number;
   public markerGroup;
+  public rangeValues: number[] = [0,100];
 
 
 
@@ -98,12 +99,14 @@ export class DashboardComponent implements OnInit {
           this.postes=response;
           // ajouter les markers des postes a la map
           for (let p of response) {
-            const Marker = L.marker({lat: p.y_gps, lng: p.x_gps}).addTo(this.markerGroup);
-            Marker.bindPopup('<b>Poste :</b> ' + p.libelle.toString() + '<br>' + '<b>Nombre de clients :</b> '
-              + p.nb_clients + '<br><b>Fiable :</b> ' + p.fiabilise + '<br><b>Consommation du poste :</b> ' + p.conso_poste
-              + ' KWH<br><b>Consommtion des clients :</b> ' + p.conso_clients + ' KWH<br><b>Rendement :</b> ' + p.rendement, {
-              closeButton: true
-            });
+            if(p.rendement>=this.rangeValues[0] && p.rendement<=this.rangeValues[1]){
+              const Marker = L.marker({lat: p.y_gps, lng: p.x_gps}).addTo(this.markerGroup);
+              Marker.bindPopup('<b>Poste :</b> ' + p.libelle.toString() + '<br>' + '<b>Nombre de clients :</b> '
+                + p.nb_clients + '<br><b>Fiable :</b> ' + p.fiabilise + '<br><b>Consommation du poste :</b> ' + p.conso_poste
+                + ' KWH<br><b>Consommtion des clients :</b> ' + p.conso_clients + ' KWH<br><b>Rendement :</b> ' + p.rendement, {
+                closeButton: true
+              });
+            }
           }
         },
         (error: HttpErrorResponse)=>{alert(error.message)}
@@ -131,4 +134,5 @@ export class DashboardComponent implements OnInit {
     this.markerGroup.clearLayers();
     this.getPostes();
   }
+
 }
