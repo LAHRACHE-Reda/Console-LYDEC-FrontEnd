@@ -110,7 +110,9 @@
       <!-- Small boxes (Stat box) -->
       <div class="row ml-2 mr-2 justify-content-sm-center">
           <div class="map-border">
-              <div id="map"></div>
+              <div id="map">
+                <button (click)="fullScreen();" class="leaflet-bar leaflet-control leaflet-control-custom"><i class="fas fa-compress"></i></button>
+              </div>
           </div>
       </div>
 

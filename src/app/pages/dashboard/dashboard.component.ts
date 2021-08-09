@@ -180,4 +180,19 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  // fullscreen Map
+  getFullScreenElement(){
+    return document.fullscreenElement;
+  }
+
+  fullScreen() {
+    if(this.getFullScreenElement()){
+      document.exitFullscreen().then(r => {});
+    }
+    else{
+      document.getElementById("map").requestFullscreen().then(r => {});
+    }
+  }
+
+
 }
