@@ -7,7 +7,7 @@ import {ChartModule} from 'primeng/chart';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {SliderModule} from 'primeng/slider';
-
+import {GMapModule} from 'primeng/gmap';
 
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
@@ -53,6 +53,7 @@ registerLocaleData(localeEn, 'en-EN');
       DropdownModule,
       CardModule,
       SliderModule,
+      GMapModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,

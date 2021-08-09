@@ -6,7 +6,6 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from 'ngx-toastr';
 import {SharedDataService} from "@services/shared-data.service";
 import {NgForm} from "@angular/forms";
-import {add} from "husky";
 
 
 @Component({

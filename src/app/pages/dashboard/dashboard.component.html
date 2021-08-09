@@ -93,9 +93,10 @@
     <div class="container-fluid">
 
       <div class="form-group row ml-4">
-        <label class="col-md-2 col-form-label" for="deleg" class="col-form-label">Délegation :</label>
+        <label class="col-md-2 col-form-label" for="deleg" class="col-form-label">Direction Préfectorale :</label>
         <div class="col-md-4 mr-5">
           <select id="deleg" (click)="getPostesByDeleg();" class="custom-select" [(ngModel)]="selectedDeleg">
+              <option value=0>Clear</option>
               <option *ngFor="let deleg of delegations" value={{deleg}} >{{deleg}}</option>
           </select>
         </div>
@@ -118,3 +119,4 @@
 
 </section>
 <!-- /.content -->
+

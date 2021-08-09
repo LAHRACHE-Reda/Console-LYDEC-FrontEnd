@@ -19,9 +19,11 @@ export class ConsommationComponent implements OnInit{
 
   basicOptions: any;
 
+
   constructor() {}
 
   ngOnInit() {
+
     this.basicData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -39,6 +41,9 @@ export class ConsommationComponent implements OnInit{
         }
       ]
     }
+
   }
+
+
 }
 
