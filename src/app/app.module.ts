@@ -30,7 +30,14 @@ import {UserDropdownMenuComponent} from '@modules/main/header/user-dropdown-menu
 
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ConsommationComponent } from './pages/consommation/consommation.component';
+import { LoginComponent } from './login/login.component';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from '@angular/material/select';
 
+import { InfoPosteClientsComponent } from './pages/info-poste-clients/info-poste-clients.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -44,30 +51,37 @@ registerLocaleData(localeEn, 'en-EN');
         BlankComponent,
         DashboardComponent,
         UserDropdownMenuComponent,
-        ConsommationComponent
+        ConsommationComponent,
+        LoginComponent,
+        InfoPosteClientsComponent
     ],
-    imports: [
-      ButtonModule,
-      TabViewModule,
-      ChartModule,
-      DropdownModule,
-      CardModule,
-      SliderModule,
-      GMapModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        CommonModule,
-        FormsModule,
-        NgbModule,
-        ToastrModule.forRoot({
-            timeOut: 3000,
-            positionClass: 'toast-bottom-right',
-            preventDuplicates: true
-        })
-    ],
+  imports: [
+    ButtonModule,
+    TabViewModule,
+    ChartModule,
+    DropdownModule,
+    CardModule,
+    SliderModule,
+    GMapModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    NgbModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSliderModule,
+    MatSelectModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    })
+  ],
     providers: [],
     bootstrap: [AppComponent]
 })

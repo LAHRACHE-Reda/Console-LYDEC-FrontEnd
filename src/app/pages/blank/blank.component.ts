@@ -260,4 +260,11 @@ export class BlankComponent implements AfterViewInit{
     );
   }
 
+  changeIdPosteConso(id_poste: number) {
+    this.sharedDataService.setidPosteConso(id_poste);
+  }
+
+  changeNomPosteConso(libelle: string) {
+    this.sharedDataService.setnomPosteConso(libelle);
+  }
 }

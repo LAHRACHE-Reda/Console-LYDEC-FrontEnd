@@ -56,4 +56,8 @@ export class PosteService {
     return this.http.get<any>(`${this.apiServerUrl}/postes/posteByDelegation?deleg=${deleg}`);
   }
 
+  public getNbrPostesClientsByDeleg() :  Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/postes/countByDeleg`);
+  }
+
 }

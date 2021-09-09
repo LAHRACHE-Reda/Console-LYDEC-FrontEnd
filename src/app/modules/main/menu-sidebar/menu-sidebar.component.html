@@ -29,12 +29,12 @@
                     <p>Tableau de board</p>
                 </a>
             </li>
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a (click)="resetMarkerInfo();" [routerLink]="['/consommation']" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Consommation</p>
                 </a>
-            </li>
+            </li>-->
             <li (click)="resetMarkerInfo();" class="nav-item">
                 <a [routerLink]="['/postes']" class="nav-link">
                     <i class="nav-icon fas fa-map-marked-alt"></i>
@@ -53,6 +53,12 @@
                     <p>Zones sensibles</p>
                 </a>
             </li>
+          <li class="nav-item">
+            <a (click)="resetMarkerInfo();" [routerLink]="['/vue_deleg']" class="nav-link">
+              <i class="nav-icon fas fa-info"></i>
+              <p>Vue_délégations</p>
+            </a>
+          </li>
         </ul>
     </nav>
 </div>

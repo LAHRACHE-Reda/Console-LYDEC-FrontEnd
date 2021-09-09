@@ -7,6 +7,8 @@ import {Poste} from "@/Model/Poste";
 export class SharedDataService {
 
   posteShared : Poste;
+  idPosteConso : number;
+  nomPosteConso : string;
 
   constructor() { }
 
@@ -16,6 +18,23 @@ export class SharedDataService {
 
   public getPosteShared(){
     return this.posteShared;
+  }
+
+  public setidPosteConso(idPosteConso:number){
+    this.idPosteConso=idPosteConso;
+  }
+
+  public getidPosteConso(){
+    return this.idPosteConso;
+  }
+
+
+  public getnomPosteConso(): string {
+    return this.nomPosteConso;
+  }
+
+  public setnomPosteConso(value: string) {
+    this.nomPosteConso = value;
   }
 
 }

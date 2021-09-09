@@ -20,7 +20,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150<sup style="font-size: 20px">KWH</sup></h3>
+                        <h3>{{dernierConsommation}}<sup style="font-size: 20px">kWh</sup></h3>
 
                         <p>Consommation total</p>
                     </div>
@@ -102,7 +102,7 @@
         </div>
         <label class="col-md-2 col-form-label" for="rendement" class="col-form-label">Rendement :</label>
         <div class="col-md-4 mt-3">
-          <p-slider (ngModelChange)="getPostesByDeleg();" id="rendement" [step]="10" [min]="0" [max]="100" [(ngModel)]="rangeValues" [range]="true"></p-slider>
+          <p-slider (ngModelChange)="getPostesByDeleg();" id="rendement" [step]="5" [min]="0" [max]="100" [(ngModel)]="rangeValues" [range]="true"></p-slider>
           <span class="d-flex justify-content-center">{{rangeValues[0] + ' - ' + rangeValues[1]}}</span>
         </div>
       </div>

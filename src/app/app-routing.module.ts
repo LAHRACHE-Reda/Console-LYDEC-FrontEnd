@@ -8,6 +8,8 @@ import {MainComponent} from '@modules/main/main.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ConsommationComponent} from "@pages/consommation/consommation.component";
 import {BlankComponent} from "@pages/blank/blank.component";
+import {LoginComponent} from "@/login/login.component";
+import {InfoPosteClientsComponent} from "@pages/info-poste-clients/info-poste-clients.component";
 
 
 const routes: Routes = [
@@ -26,10 +28,21 @@ const routes: Routes = [
             {
               path: 'consommation',
               component: ConsommationComponent
+            },
+            {
+              path: 'vue_deleg',
+              component: InfoPosteClientsComponent
             }
         ]
     },
-    {path: '**', redirectTo: ''}
+    {
+      path: 'login',
+      component: LoginComponent
+    },
+    {
+      path: '**',
+      redirectTo: ''
+    }
 ];
 
 @NgModule({

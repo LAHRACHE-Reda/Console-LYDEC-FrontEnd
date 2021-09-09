@@ -6,6 +6,7 @@ import {SharedDataService} from "@services/shared-data.service";
 import {ToastrService} from "ngx-toastr";
 import 'leaflet';
 import 'leaflet-routing-machine';
+import {ConsommationService} from "@services/consommation.service";
 declare let L;
 
 // default icon (blue)
@@ -54,12 +55,14 @@ export class DashboardComponent implements OnInit {
   public markerGroup;
   public positionGroup;
   public rangeValues: number[] = [0,100];
+  public dernierConsommation: number;
 
 
 
   constructor(private posteService: PosteService,private sharedDataService:SharedDataService,
-              private toastr: ToastrService) {
+              private consommationService: ConsommationService ,private toastr: ToastrService) {
     this.selectedDeleg=0;
+    this.getDernierConsoPostes();
   }
 
 
@@ -126,6 +129,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDelegations();
+    this.getDernierConsoPostes();
     this.createMap();
     if(!navigator.geolocation){
       this.toastr.error('Vous devez activer la géolocalisation dans votre navigateur');
@@ -180,10 +184,11 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  // fullscreen Map
+  //----------------------------------- fullscreen Map
   getFullScreenElement(){
     return document.fullscreenElement;
   }
+
 
   fullScreen() {
     if(this.getFullScreenElement()){
@@ -192,6 +197,17 @@ export class DashboardComponent implements OnInit {
     else{
       document.getElementById("map").requestFullscreen().then(r => {});
     }
+  }
+
+
+  // dernier consommation de tous les postes
+  getDernierConsoPostes(){
+    this.consommationService.getDernierConsommation().subscribe(
+      (response:number)=>{
+        this.dernierConsommation=response;
+      },
+      (error: HttpErrorResponse)=>{alert(error.message)}
+    )
   }
 
 
