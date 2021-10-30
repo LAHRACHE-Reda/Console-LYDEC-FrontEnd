@@ -27,7 +27,7 @@ export class BlankComponent implements AfterViewInit{
   public nbClientsFilter : boolean;
   public pasDePosFilter : boolean;
   public searchFilter : boolean;
-  public searchValue : string;
+  public searchValue : string = '';
   public posteDeleted : Poste;
   public newPoste : Poste;
 
@@ -42,16 +42,20 @@ export class BlankComponent implements AfterViewInit{
     this.getPostes();
   }
 
+  public refrechContent(response){
+    this.postes=response["content"];
+    this.currentPage=response["number"];
+    this.totalPages=response["totalPages"];
+    this.firstPage=response["first"];
+    this.lastPage=response["last"];
+    this.totalElements=response["totalElements"];
+  }
+
   public getPostes() : void{
     this.searchValue = '';
     this.posteService.getAllPostesByPage(this.currentPage).subscribe(
       (response)=>{
-        this.postes=response["content"];
-        this.currentPage=response["number"];
-        this.totalPages=response["totalPages"];
-        this.firstPage=response["first"];
-        this.lastPage=response["last"];
-        this.totalElements=response["totalElements"];
+        this.refrechContent(response);
         this.allFilter=true;
         this.libelleFilter=false;
         this.pasDePosFilter=false;
@@ -66,12 +70,7 @@ export class BlankComponent implements AfterViewInit{
     this.searchValue = '';
     this.posteService.getAllPostesByLibelle(this.currentPage).subscribe(
       (response)=>{
-        this.postes=response["content"];
-        this.currentPage=response["number"];
-        this.totalPages=response["totalPages"];
-        this.firstPage=response["first"];
-        this.lastPage=response["last"];
-        this.totalElements=response["totalElements"];
+        this.refrechContent(response);
         this.allFilter=false;
         this.libelleFilter=true;
         this.pasDePosFilter=false;
@@ -86,12 +85,7 @@ export class BlankComponent implements AfterViewInit{
     this.searchValue = '';
     this.posteService.getAllPostesWithoutPos(this.currentPage).subscribe(
       (response)=>{
-        this.postes=response["content"];
-        this.currentPage=response["number"];
-        this.totalPages=response["totalPages"];
-        this.firstPage=response["first"];
-        this.lastPage=response["last"];
-        this.totalElements=response["totalElements"];
+        this.refrechContent(response);
         this.allFilter=false;
         this.libelleFilter=false;
         this.pasDePosFilter=true;
@@ -106,12 +100,7 @@ export class BlankComponent implements AfterViewInit{
     this.searchValue = '';
     this.posteService.getAllPostesByNbClients(this.currentPage).subscribe(
       (response)=>{
-        this.postes=response["content"];
-        this.currentPage=response["number"];
-        this.totalPages=response["totalPages"];
-        this.firstPage=response["first"];
-        this.lastPage=response["last"];
-        this.totalElements=response["totalElements"];
+        this.refrechContent(response);
         this.allFilter=false;
         this.libelleFilter=false;
         this.pasDePosFilter=false;
@@ -125,12 +114,7 @@ export class BlankComponent implements AfterViewInit{
   public getBySearch(value:string) : void{
     this.posteService.getAllPostesBySearch(this.currentPage,value).subscribe(
       (response)=>{
-        this.postes=response["content"];
-        this.currentPage=response["number"];
-        this.totalPages=response["totalPages"];
-        this.firstPage=response["first"];
-        this.lastPage=response["last"];
-        this.totalElements=response["totalElements"];
+        this.refrechContent(response);
         this.allFilter=false;
         this.libelleFilter=false;
         this.pasDePosFilter=false;

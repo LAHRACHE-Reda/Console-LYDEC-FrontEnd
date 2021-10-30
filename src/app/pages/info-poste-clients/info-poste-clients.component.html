@@ -14,7 +14,7 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="delegControl.hasError('required')">Selectionner une délégation</mat-error>
-        <mat-hint>{{delegControl.value?.sound}}</mat-hint>
+        <mat-hint>{{delegControl.value}}</mat-hint>
       </mat-form-field>
 
       <mat-form-field class="ml-4" appearance="fill">
@@ -28,7 +28,7 @@
                         panelClass="example-month-picker">
         </mat-datepicker>
       </mat-form-field>
-      <button type="submit" class="btn btn-outline-primary mb-3 ml-2"><i class="fas fa-poll"></i></button>
+      <button class="btn btn-outline-primary mb-3 ml-2"><i class="fas fa-poll"></i></button>
     </form>
 
   </div>

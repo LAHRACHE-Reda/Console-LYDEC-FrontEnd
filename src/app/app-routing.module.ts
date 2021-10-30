@@ -10,12 +10,14 @@ import {ConsommationComponent} from "@pages/consommation/consommation.component"
 import {BlankComponent} from "@pages/blank/blank.component";
 import {LoginComponent} from "@/login/login.component";
 import {InfoPosteClientsComponent} from "@pages/info-poste-clients/info-poste-clients.component";
+import {AuthGuardService} from "@services/auth-guard.service";
 
 
 const routes: Routes = [
     {
         path: '',
         component: MainComponent,
+        canActivate:[AuthGuardService],
         children: [
             {
                 path: 'postes',
